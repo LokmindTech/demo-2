@@ -1,558 +1,472 @@
-<!doctype html>
-<html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lokeshkumar - Professional Portfolio</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <style>
-    body {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      color: #333333;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      width: 100%;
-      height: 100%;
-      overflow-x: hidden;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    .portfolio-wrapper {
-      width: 100%;
-      min-height: 100%;
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Header Section */
-    .header-section {
-      text-align: center;
-      padding: 60px 20px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      margin-bottom: 40px;
-      backdrop-filter: blur(10px);
-    }
-
-    .profile-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 30px;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-      font-size: 60px;
-      color: white;
-    }
-
-    .name {
-      font-size: 48px;
-      font-weight: 700;
-      margin: 0 0 10px 0;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .tagline {
-      font-size: 20px;
-      color: #666666;
-      margin: 0;
-      font-weight: 400;
-    }
-
-    /* Content Cards */
-    .content-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 40px;
-      margin-bottom: 30px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .content-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-    }
-
-    .section-title {
-      font-size: 32px;
-      font-weight: 700;
-      margin: 0 0 25px 0;
-      color: #667eea;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .section-icon {
-      font-size: 36px;
-    }
-
-    .about-text {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #555555;
-    }
-
-    /* Projects Grid */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 25px;
-    }
-
-    .project-card {
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-      border: 2px solid #667eea;
-      border-radius: 15px;
-      padding: 30px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
-      border-color: #764ba2;
-    }
-
-    .project-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .project-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #667eea;
-      margin: 0 0 12px 0;
-    }
-
-    .project-description {
-      font-size: 16px;
-      color: #555555;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* Skills Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 25px;
-    }
-
-    .skill-item {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 18px;
-      font-weight: 600;
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .skill-item:hover {
-      transform: scale(1.05);
-    }
-
-    /* Contact Section */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin-top: 25px;
-    }
-
-    .contact-item {
-      background: #f8f9fa;
-      padding: 25px;
-      border-radius: 12px;
-      text-align: center;
-      transition: background 0.3s ease;
-    }
-
-    .contact-item:hover {
-      background: #e9ecef;
-    }
-
-    .contact-icon {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-
-    .contact-label {
-      font-size: 14px;
-      color: #888888;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .contact-value {
-      font-size: 18px;
-      color: #333333;
-      font-weight: 600;
-    }
-
-    @media (max-width: 768px) {
-      .name {
-        font-size: 36px;
-      }
-
-      .tagline {
-        font-size: 16px;
-      }
-
-      .section-title {
-        font-size: 24px;
-      }
-
-      .content-card {
-        padding: 25px;
-      }
-
-      .projects-grid,
-      .skills-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-  <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
- </head>
- <body>
-  <div class="portfolio-wrapper">
-   <div class="container"><!-- Header Section -->
-    <div class="header-section">
-     <div class="profile-image">
-      👨‍💼
-     </div>
-     <h1 class="name" id="fullName">Lokeshkumar</h1>
-     <p class="tagline" id="tagline">Creative Professional | Problem Solver | Innovator</p>
-    </div><!-- About Section -->
-    <div class="content-card">
-     <h2 class="section-title"><span class="section-icon">✨</span> <span id="aboutTitle">About Me</span></h2>
-     <p class="about-text" id="aboutText">Passionate professional with a keen eye for detail and a drive for excellence. I bring creativity, dedication, and innovative thinking to every project. With a strong foundation in problem-solving and collaborative teamwork, I'm committed to delivering outstanding results.</p>
-    </div><!-- Projects Section -->
-    <div class="content-card">
-     <h2 class="section-title"><span class="section-icon">🚀</span> <span id="projectsTitle">Featured Projects</span></h2>
-     <div class="projects-grid">
-      <div class="project-card">
-       <div class="project-icon">
-        💼
-       </div>
-       <h3 class="project-title" id="project1Title">E-Commerce Platform</h3>
-       <p class="project-description" id="project1Description">Developed a comprehensive online shopping platform with secure payment integration, inventory management, and user-friendly interface serving 10,000+ customers.</p>
-      </div>
-      <div class="project-card">
-       <div class="project-icon">
-        📱
-       </div>
-       <h3 class="project-title" id="project2Title">Mobile Application</h3>
-       <p class="project-description" id="project2Description">Created an innovative mobile app that streamlines daily tasks and enhances productivity, featuring real-time synchronization and intuitive design.</p>
-      </div>
-      <div class="project-card">
-       <div class="project-icon">
-        🎨
-       </div>
-       <h3 class="project-title" id="project3Title">Brand Identity Design</h3>
-       <p class="project-description" id="project3Description">Designed complete brand identity including logo, color palette, and marketing materials for a successful startup, resulting in 300% brand recognition increase.</p>
-      </div>
-     </div>
-    </div><!-- Skills Section -->
-    <div class="content-card">
-     <h2 class="section-title"><span class="section-icon">🎯</span> <span id="skillsTitle">Skills &amp; Expertise</span></h2>
-     <div class="skills-grid">
-      <div class="skill-item">
-       Leadership
-      </div>
-      <div class="skill-item">
-       Communication
-      </div>
-      <div class="skill-item">
-       Problem Solving
-      </div>
-      <div class="skill-item">
-       Team Collaboration
-      </div>
-      <div class="skill-item">
-       Project Management
-      </div>
-      <div class="skill-item">
-       Creative Thinking
-      </div>
-     </div>
-    </div><!-- Contact Section -->
-    <div class="content-card">
-     <h2 class="section-title"><span class="section-icon">📬</span> <span id="contactTitle">Get In Touch</span></h2>
-     <div class="contact-grid">
-      <div class="contact-item">
-       <div class="contact-icon">
-        📧
-       </div>
-       <div class="contact-label" id="emailLabel">
-        Email
-       </div>
-       <div class="contact-value">
-        lokesh@email.com
-       </div>
-      </div>
-      <div class="contact-item">
-       <div class="contact-icon">
-        📱
-       </div>
-       <div class="contact-label" id="phoneLabel">
-        Phone
-       </div>
-       <div class="contact-value">
-        +1 (555) 123-4567
-       </div>
-      </div>
-      <div class="contact-item">
-       <div class="contact-icon">
-        📍
-       </div>
-       <div class="contact-label" id="locationLabel">
-        Location
-       </div>
-       <div class="contact-value">
-        Your City, Country
-       </div>
-      </div>
-     </div>
-    </div>
-   </div>
-  </div>
-  <script>
-    const defaultConfig = {
-      full_name: "Lokeshkumar",
-      tagline: "Creative Professional | Problem Solver | Innovator",
-      about_title: "About Me",
-      about_text: "Passionate professional with a keen eye for detail and a drive for excellence. I bring creativity, dedication, and innovative thinking to every project. With a strong foundation in problem-solving and collaborative teamwork, I'm committed to delivering outstanding results.",
-      projects_title: "Featured Projects",
-      project1_title: "E-Commerce Platform",
-      project1_description: "Developed a comprehensive online shopping platform with secure payment integration, inventory management, and user-friendly interface serving 10,000+ customers.",
-      project2_title: "Mobile Application",
-      project2_description: "Created an innovative mobile app that streamlines daily tasks and enhances productivity, featuring real-time synchronization and intuitive design.",
-      project3_title: "Brand Identity Design",
-      project3_description: "Designed complete brand identity including logo, color palette, and marketing materials for a successful startup, resulting in 300% brand recognition increase.",
-      skills_title: "Skills & Expertise",
-      contact_title: "Get In Touch",
-      email_label: "Email",
-      phone_label: "Phone",
-      location_label: "Location",
-      background_color: "#667eea",
-      surface_color: "#ffffff",
-      text_color: "#333333",
-      primary_action_color: "#667eea",
-      secondary_text_color: "#666666",
-      font_family: "Inter",
-      font_size: 16
-    };
-
-    async function onConfigChange(config) {
-      const customFont = config.font_family || defaultConfig.font_family;
-      const baseFontStack = "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif";
-      const fullFontFamily = `${customFont}, ${baseFontStack}`;
-      const baseSize = config.font_size || defaultConfig.font_size;
-
-      document.body.style.fontFamily = fullFontFamily;
-
-      const backgroundColor = config.background_color || defaultConfig.background_color;
-      document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, #764ba2 100%)`;
-
-      const surfaceColor = config.surface_color || defaultConfig.surface_color;
-      const cards = document.querySelectorAll('.header-section, .content-card');
-      cards.forEach(card => {
-        card.style.backgroundColor = `rgba(${parseInt(surfaceColor.slice(1,3), 16)}, ${parseInt(surfaceColor.slice(3,5), 16)}, ${parseInt(surfaceColor.slice(5,7), 16)}, 0.95)`;
-      });
-
-      const textColor = config.text_color || defaultConfig.text_color;
-      document.body.style.color = textColor;
-      document.querySelectorAll('.about-text, .contact-value, .project-description').forEach(el => {
-        el.style.color = textColor;
-      });
-
-      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
-      document.querySelectorAll('.section-title, .project-title').forEach(el => {
-        el.style.color = primaryActionColor;
-      });
-      document.querySelector('.name').style.background = `linear-gradient(135deg, ${primaryActionColor} 0%, #764ba2 100%)`;
-      document.querySelector('.name').style.webkitBackgroundClip = 'text';
-      document.querySelector('.name').style.webkitTextFillColor = 'transparent';
-      document.querySelector('.name').style.backgroundClip = 'text';
-
-      document.querySelectorAll('.project-card').forEach(el => {
-        el.style.borderColor = primaryActionColor;
-      });
-
-      const secondaryTextColor = config.secondary_text_color || defaultConfig.secondary_text_color;
-      document.querySelectorAll('.tagline, .contact-label').forEach(el => {
-        el.style.color = secondaryTextColor;
-      });
-
-      document.querySelector('.name').style.fontSize = `${baseSize * 3}px`;
-      document.querySelector('.tagline').style.fontSize = `${baseSize * 1.25}px`;
-      document.querySelectorAll('.section-title').forEach(el => {
-        el.style.fontSize = `${baseSize * 2}px`;
-      });
-      document.querySelector('.about-text').style.fontSize = `${baseSize * 1.125}px`;
-      document.querySelectorAll('.project-title').forEach(el => {
-        el.style.fontSize = `${baseSize * 1.375}px`;
-      });
-      document.querySelectorAll('.project-description').forEach(el => {
-        el.style.fontSize = `${baseSize}px`;
-      });
-      document.querySelectorAll('.skill-item').forEach(el => {
-        el.style.fontSize = `${baseSize * 1.125}px`;
-      });
-      document.querySelectorAll('.contact-value').forEach(el => {
-        el.style.fontSize = `${baseSize * 1.125}px`;
-      });
-      document.querySelectorAll('.contact-label').forEach(el => {
-        el.style.fontSize = `${baseSize * 0.875}px`;
-      });
-
-      document.getElementById('fullName').textContent = config.full_name || defaultConfig.full_name;
-      document.getElementById('tagline').textContent = config.tagline || defaultConfig.tagline;
-      document.getElementById('aboutTitle').textContent = config.about_title || defaultConfig.about_title;
-      document.getElementById('aboutText').textContent = config.about_text || defaultConfig.about_text;
-      document.getElementById('projectsTitle').textContent = config.projects_title || defaultConfig.projects_title;
-      document.getElementById('project1Title').textContent = config.project1_title || defaultConfig.project1_title;
-      document.getElementById('project1Description').textContent = config.project1_description || defaultConfig.project1_description;
-      document.getElementById('project2Title').textContent = config.project2_title || defaultConfig.project2_title;
-      document.getElementById('project2Description').textContent = config.project2_description || defaultConfig.project2_description;
-      document.getElementById('project3Title').textContent = config.project3_title || defaultConfig.project3_title;
-      document.getElementById('project3Description').textContent = config.project3_description || defaultConfig.project3_description;
-      document.getElementById('skillsTitle').textContent = config.skills_title || defaultConfig.skills_title;
-      document.getElementById('contactTitle').textContent = config.contact_title || defaultConfig.contact_title;
-      document.getElementById('emailLabel').textContent = config.email_label || defaultConfig.email_label;
-      document.getElementById('phoneLabel').textContent = config.phone_label || defaultConfig.phone_label;
-      document.getElementById('locationLabel').textContent = config.location_label || defaultConfig.location_label;
-    }
-
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              config.background_color = value;
-              window.elementSdk.setConfig({ background_color: value });
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokesh Kumar N | Data & Business Analyst Portfolio</title>
+    <meta name="description" content="Portfolio of Lokesh Kumar N - Junior Business Analyst and Data Analytics Specialist based in Bengaluru.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0B5FFF',    // Primary Blue
+                        navy: '#0B1B3A',       // Dark Navy
+                        slate: '#F4F7FA',      // Soft Slate
+                        teal: '#0FB5A6',       // Accent Teal
+                        grey: '#6B7280',       // Neutral Grey
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
             }
-          },
-          {
-            get: () => config.surface_color || defaultConfig.surface_color,
-            set: (value) => {
-              config.surface_color = value;
-              window.elementSdk.setConfig({ surface_color: value });
-            }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              window.elementSdk.setConfig({ text_color: value });
-            }
-          },
-          {
-            get: () => config.primary_action_color || defaultConfig.primary_action_color,
-            set: (value) => {
-              config.primary_action_color = value;
-              window.elementSdk.setConfig({ primary_action_color: value });
-            }
-          },
-          {
-            get: () => config.secondary_text_color || defaultConfig.secondary_text_color,
-            set: (value) => {
-              config.secondary_text_color = value;
-              window.elementSdk.setConfig({ secondary_text_color: value });
-            }
-          }
-        ],
-        borderables: [],
-        fontEditable: {
-          get: () => config.font_family || defaultConfig.font_family,
-          set: (value) => {
-            config.font_family = value;
-            window.elementSdk.setConfig({ font_family: value });
-          }
-        },
-        fontSizeable: {
-          get: () => config.font_size || defaultConfig.font_size,
-          set: (value) => {
-            config.font_size = value;
-            window.elementSdk.setConfig({ font_size: value });
-          }
         }
-      };
-    }
+    </script>
 
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["full_name", config.full_name || defaultConfig.full_name],
-        ["tagline", config.tagline || defaultConfig.tagline],
-        ["about_title", config.about_title || defaultConfig.about_title],
-        ["about_text", config.about_text || defaultConfig.about_text],
-        ["projects_title", config.projects_title || defaultConfig.projects_title],
-        ["project1_title", config.project1_title || defaultConfig.project1_title],
-        ["project1_description", config.project1_description || defaultConfig.project1_description],
-        ["project2_title", config.project2_title || defaultConfig.project2_title],
-        ["project2_description", config.project2_description || defaultConfig.project2_description],
-        ["project3_title", config.project3_title || defaultConfig.project3_title],
-        ["project3_description", config.project3_description || defaultConfig.project3_description],
-        ["skills_title", config.skills_title || defaultConfig.skills_title],
-        ["contact_title", config.contact_title || defaultConfig.contact_title],
-        ["email_label", config.email_label || defaultConfig.email_label],
-        ["phone_label", config.phone_label || defaultConfig.phone_label],
-        ["location_label", config.location_label || defaultConfig.location_label]
-      ]);
-    }
+    <style>
+        /* Custom Utilities */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white antialiased">
 
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
-      });
-    }
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a426020d594c177',t:'MTc2NDA4NjYwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-navy tracking-tight">
+                Lokesh<span class="text-primary">.</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-primary transition">About</a>
+                <a href="#experience" class="text-sm font-medium text-gray-600 hover:text-primary transition">Experience</a>
+                <a href="#projects" class="text-sm font-medium text-gray-600 hover:text-primary transition">Projects</a>
+                <a href="#contact" class="text-sm font-medium text-gray-600 hover:text-primary transition">Contact</a>
+                <a href="/mnt/data/Profile (2).pdf" target="_blank" class="px-5 py-2.5 text-sm font-semibold text-white bg-primary rounded-full hover:bg-blue-700 transition shadow-lg shadow-blue-500/30">
+                    Download Resume
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-navy focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full left-0">
+            <div class="flex flex-col p-6 space-y-4">
+                <a href="#about" class="text-gray-600 hover:text-primary">About</a>
+                <a href="#experience" class="text-gray-600 hover:text-primary">Experience</a>
+                <a href="#projects" class="text-gray-600 hover:text-primary">Projects</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary">Contact</a>
+                <a href="/mnt/data/Profile (2).pdf" class="text-primary font-semibold">Download Resume</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative min-h-screen flex items-center bg-slate overflow-hidden pt-20">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent opacity-50"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-teal rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            
+            <div class="order-2 md:order-1 opacity-0 animate-slide-up" style="animation-delay: 0.1s;">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-primary text-xs font-bold tracking-wider uppercase mb-4">
+                    [cite_start]Based in Bengaluru, India [cite: 32]
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold text-navy leading-tight mb-6">
+                    Hi, I'm <span class="text-primary">Lokesh Kumar N</span><br>
+                    <span class="text-2xl md:text-3xl font-medium text-grey mt-2 block">Junior Business Analyst</span>
+                </h1>
+                <p class="text-lg text-grey mb-8 max-w-lg leading-relaxed">
+                    I transform complex data into actionable insights. [cite_start]Expert in driving process automation and building dashboards that boost efficiency and support smarter decision-making. [cite: 24, 25]
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" class="px-8 py-3.5 bg-navy text-white rounded-full font-semibold hover:bg-opacity-90 transition shadow-lg hover:shadow-xl">
+                        View Projects
+                    </a>
+                    <a href="#contact" class="px-8 py-3.5 bg-white text-navy border border-gray-200 rounded-full font-semibold hover:bg-gray-50 transition">
+                        Contact Me
+                    </a>
+                    <a href="https://www.linkedin.com/in/lokeshkumar-chennai" target="_blank" aria-label="LinkedIn" class="p-3.5 bg-blue-50 text-primary rounded-full hover:bg-blue-100 transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="order-1 md:order-2 flex justify-center md:justify-end opacity-0 animate-fade-in" style="animation-delay: 0.3s;">
+                <div class="relative w-72 h-72 md:w-96 md:h-96">
+                    <div class="absolute inset-0 bg-primary rounded-full opacity-10 animate-pulse"></div>
+                    <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-white shadow-2xl bg-gray-200 flex items-center justify-center">
+                        <img 
+                            src="/images/avatar.jpg" 
+                            alt="Lokesh Kumar N" 
+                            class="w-full h-full object-cover"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <div class="hidden w-full h-full bg-navy text-white text-6xl font-bold items-center justify-center">
+                            LK
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 -left-4 bg-white p-3 rounded-xl shadow-lg flex items-center gap-3 animate-bounce" style="animation-duration: 3s;">
+                        <div class="bg-teal/10 p-2 rounded-lg text-teal">
+                           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium">Certified</p>
+                            <p class="text-sm font-bold text-navy">Zoom Expert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="section-padding bg-white">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-3xl font-bold text-navy mb-6">About Me</h2>
+            <div class="w-16 h-1 bg-primary mx-auto mb-8 rounded-full"></div>
+            <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                I am a passionate Data & Business Analyst holding a Master's in Data Analytics and a Zoom Deployment Fundamentals certification. [cite_start]My expertise lies in leveraging analytics and automation to solve business challenges and deliver measurable impact. [cite: 26]
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                [cite_start]Skilled in SQL, Python, Power BI, Excel, and Statistical Analysis, I develop automated reports and workflows that boost efficiency and support smarter decision-making. [cite: 25]
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="section-padding bg-slate">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-navy mb-12 text-center">Professional Experience</h2>
+            
+            <div class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-navy">Junior Business Analyst</h3>
+                            <p class="text-primary font-medium">Avoor Networks Pvt. Ltd.</p>
+                        </div>
+                        <div class="text-right mt-2 md:mt-0">
+                            <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">June 2025 - Present</span>
+                            <p class="text-xs text-gray-400 mt-1">Bengaluru, Karnataka</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Improved client communication efficiency by 40% and boosted adoption through customized Zoom collaboration solutions. [cite: 33]</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Leveraged Power BI to analyze sales trends and optimize strategies, increasing forecasting accuracy by 22%. [cite: 34]</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Streamlined cross-functional processes, reducing service delivery time by 30% and driving overall business growth. [cite: 35]</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-navy">Data Analyst</h3>
+                            <p class="text-primary font-medium">Avoor Networks Pvt. Ltd.</p>
+                        </div>
+                        <div class="text-right mt-2 md:mt-0">
+                            <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Feb 2025 - June 2025</span>
+                            <p class="text-xs text-gray-400 mt-1">Bengaluru, Karnataka</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Cleaned and analyzed complex datasets to ensure accuracy and uncover critical business insights. [cite: 39, 40]</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Built robust dashboards and reports in Power BI & Excel to track KPIs and visualize trends. [cite: 41, 42]</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Supported forecasting and performance analysis to facilitate data-driven decision-making. [cite: 44]</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <div class="flex flex-col md:flex-row justify-between md:items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-navy">Data Analyst Intern</h3>
+                            <p class="text-primary font-medium">Hinisys</p>
+                        </div>
+                        <div class="text-right mt-2 md:mt-0">
+                            <span class="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">Aug 2024 - Feb 2025</span>
+                            <p class="text-xs text-gray-400 mt-1">Chennai, Tamil Nadu</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Cleaned, processed, and validated data using Python and SQL to ensure high accuracy. [cite: 51]</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Built interactive dashboards in Power BI to present key insights to stakeholders. [cite: 54]</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal mr-2 mt-1.5">●</span>
+                            [cite_start]<span>Wrote optimized SQL queries for data extraction and manipulation to streamline analysis. [cite: 55]</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-white">
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12">
+            
+            <div>
+                <h2 class="text-2xl font-bold text-navy mb-8 flex items-center">
+                    <span class="w-2 h-8 bg-teal rounded-full mr-3"></span> Education
+                </h2>
+                <div class="space-y-6">
+                    <div class="bg-slate p-6 rounded-2xl border border-gray-100">
+                        <h3 class="text-lg font-bold text-navy">Master of Science - Data Analytics</h3>
+                        <p class="text-gray-500 text-sm mb-2">Sri Ramachandra Institute Of Higher Education and Research</p>
+                        <span class="text-primary text-xs font-semibold bg-white px-2 py-1 rounded shadow-sm">Sept 2023 - June 2025</span>
+                    </div>
+                    <div class="bg-slate p-6 rounded-2xl border border-gray-100">
+                        <h3 class="text-lg font-bold text-navy">BCA - Computer Programming</h3>
+                        <p class="text-gray-500 text-sm mb-2">SRM Arts and Science College</p>
+                        <span class="text-primary text-xs font-semibold bg-white px-2 py-1 rounded shadow-sm">Aug 2020 - May 2023</span>
+                    </div>
+                </div>
+
+                 <div class="mt-10">
+                    <h2 class="text-2xl font-bold text-navy mb-6 flex items-center">
+                        <span class="w-2 h-8 bg-primary rounded-full mr-3"></span> Certifications
+                    </h2>
+                    <ul class="bg-slate p-6 rounded-2xl space-y-3 text-gray-700">
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> ZDA Zoom Phone Deployment Fundamentals</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Python for Data Science, AI & Development</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> PowerBI and SQL</li>
+                        <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> OptNet Research Paper (IEEE Conference)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-bold text-navy mb-8 flex items-center">
+                    <span class="w-2 h-8 bg-teal rounded-full mr-3"></span> Technical Skills
+                </h2>
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Python</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">SQL (PostgreSQL)</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Power BI</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Advanced Excel</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Exploratory Data Analysis</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Data Visualization</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Performance Analysis</span>
+                        <span class="px-4 py-2 bg-slate text-navy rounded-full text-sm font-semibold hover:bg-primary hover:text-white transition cursor-default">Process Automation</span>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                     <h2 class="text-2xl font-bold text-navy mb-6 flex items-center">
+                        <span class="w-2 h-8 bg-primary rounded-full mr-3"></span> Languages
+                    </h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-slate rounded-xl">
+                            <p class="font-bold text-navy">English</p>
+                            <p class="text-xs text-gray-500">Professional Working</p>
+                        </div>
+                        <div class="p-4 bg-slate rounded-xl">
+                            <p class="font-bold text-navy">Tamil</p>
+                            <p class="text-xs text-gray-500">Native / Bilingual</p>
+                        </div>
+                        <div class="p-4 bg-slate rounded-xl">
+                            <p class="font-bold text-navy">Telugu</p>
+                            <p class="text-xs text-gray-500">Elementary</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-padding bg-slate">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-navy mb-12 text-center">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col h-full group">
+                    <div class="h-40 bg-gradient-to-r from-navy to-blue-900 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-white opacity-5 pattern-grid-lg"></div>
+                        <div class="flex items-end gap-1 h-16">
+                            <div class="w-3 bg-teal h-8 rounded-t"></div>
+                            <div class="w-3 bg-teal h-12 rounded-t"></div>
+                            <div class="w-3 bg-white h-16 rounded-t"></div>
+                            <div class="w-3 bg-teal h-10 rounded-t"></div>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-xl font-bold text-navy mb-3 group-hover:text-primary transition">Sales Forecasting Dashboard</h3>
+                        [cite_start]<p class="text-gray-600 text-sm mb-4">Leveraged Power BI to analyze historical sales trends, resulting in a 22% increase in forecasting accuracy for strategic planning. [cite: 34]</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-slate text-navy px-2 py-1 rounded font-medium">Power BI</span>
+                            <span class="text-xs bg-slate text-navy px-2 py-1 rounded font-medium">Forecasting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col h-full group">
+                    <div class="h-40 bg-gradient-to-r from-blue-500 to-primary flex items-center justify-center relative">
+                        <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-xl font-bold text-navy mb-3 group-hover:text-primary transition">Zoom Collaboration Solutions</h3>
+                        [cite_start]<p class="text-gray-600 text-sm mb-4">Implemented customized Zoom deployment strategies that improved client communication efficiency by 40% and boosted adoption rates. [cite: 33]</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-slate text-navy px-2 py-1 rounded font-medium">Zoom Certified</span>
+                            <span class="text-xs bg-slate text-navy px-2 py-1 rounded font-medium">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300 flex flex-col h-full group">
+                    <div class="h-40 bg-gradient-to-r from-teal to-green-600 flex items-center justify-center relative">
+                        <svg class="w-16 h-16 text-white opacity-80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <h3 class="text-xl font-bold text-navy mb-3 group-hover:text-primary transition">Data Automation Workflows</h3>
+                        [cite_start]<p class="text-gray-600 text-sm mb-4">Developed Python and SQL scripts to clean, process, and validate large datasets, automating reporting to reduce delivery time by 30%. [cite: 35, 51]</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs bg-slate text-navy px-2 py-1 rounded font-medium">Python</span>
+                            <span class="text-xs bg-slate text-navy px-2 py-1 rounded font-medium">SQL</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-padding bg-white relative">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-navy rounded-3xl p-8 md:p-12 shadow-2xl text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full mix-blend-overlay filter blur-3xl opacity-20"></div>
+                
+                <div class="grid md:grid-cols-2 gap-12 relative z-10">
+                    <div>
+                        <h2 class="text-3xl font-bold mb-6">Let's Connect</h2>
+                        <p class="text-gray-300 mb-8">I'm always open to discussing data analytics, automation projects, or new opportunities.</p>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                </div>
+                                <span>7092885945</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <a href="mailto:lokesh709288@gmail.com" class="hover:text-teal transition">lokesh709288@gmail.com</a>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-teal" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                </div>
+                                <a href="https://www.linkedin.com/in/lokeshkumar-chennai" target="_blank" class="hover:text-teal transition">LinkedIn Profile</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                            <input type="text" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-teal" placeholder="How can I help you?"></textarea>
+                        </div>
+                        <button type="button" class="w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-blue-600 transition shadow-lg">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy py-12 border-t border-white/10">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-white mb-2">Lokesh Kumar N</h2>
+            <p class="text-gray-400 text-sm mb-6">Junior Business Analyst | Data Analytics Specialist</p>
+            
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="/mnt/data/Profile (2).pdf" target="_blank" class="text-gray-400 hover:text-white transition text-sm">Download Resume</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition text-sm">About</a>
+                <a href="#projects" class="text-gray-400 hover:text-white transition text-sm">Projects</a>
+            </div>
+            
+            <div class="text-gray-500 text-xs">
+                &copy; 2025 Lokesh Kumar N. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
 </html>
